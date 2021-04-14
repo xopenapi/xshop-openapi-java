@@ -1,7 +1,7 @@
 package com.example.graphqldemo.api;
 
 import com.kobylynskyi.graphql.codegen.model.graphql.GraphQLRequest;
-import io.github.kobylynskyi.product.graphql.model.*;
+import com.lucfish.xshop.openapi.*;
 
 // 先运行 mvn generate-sources 命令，生成dto
 public class OrderApi extends Api {
@@ -31,7 +31,7 @@ public class OrderApi extends Api {
         queryRequest.setLast(last);
         queryRequest.setReverse(reverse);
 
-        OrderConnectionResponseProjection responseProjection = new OrderConnectionResponseProjection();
+        OrderConnectionResponseProjection responseProjection = new OrderConnectionResponseProjection().totalCount();
         GraphQLRequest graphQLRequest = new GraphQLRequest(queryRequest, responseProjection);
 
         OrdersQueryResponse result = query(graphQLRequest, OrdersQueryResponse.class);

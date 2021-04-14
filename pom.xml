@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>graphqldemo</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.lucfish</groupId>
+    <artifactId>xshop-openapi-java</artifactId>
+    <version>1.1</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -57,7 +57,7 @@
                                 <includePattern>.*\.graphql</includePattern>
                             </graphqlSchemas>
                             <outputDir>${project.build.directory}/generated-sources/client</outputDir>
-                            <modelPackageName>io.github.kobylynskyi.product.graphql.model</modelPackageName>
+                            <modelPackageName>com.lucfish.xshop.openapi</modelPackageName>
                             <customTypesMapping>
                                 <DateTime>java.util.Date</DateTime>
                                 <!-- Following code can be used to generate boxed types instead of primitives:
