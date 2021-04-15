@@ -7,10 +7,6 @@ import com.lucfish.xshop.openapi.*;
 // 先运行 mvn generate-sources 命令，生成dto
 public class OrderApi extends Api {
 
-    public OrderApi(String url) {
-        super(url);
-    }
-
     public OrderTO order(String orderId) throws Exception {
         OrderQueryRequest orderQueryRequest = new OrderQueryRequest();
         orderQueryRequest.setId(orderId);
@@ -40,6 +36,36 @@ public class OrderApi extends Api {
             throw new Exception(result.getErrors().get(0).getMessage());
         }
         return result.orders();
+    }
+
+    public OrderApi(Builder builder){
+        super(builder.url, builder.accessToken);
+    }
+
+    public static class Builder{
+        private String url;
+        private String accessToken;
+
+        public Builder(){
+        }
+
+        public Builder(String accessToken){
+            this.accessToken = accessToken;
+        }
+
+        public Builder setUrl(String url) {
+            this.url = url;
+            return this;
+        }
+
+        public Builder setAccessToken(String accessToken) {
+            this.accessToken = accessToken;
+            return this;
+        }
+
+        public OrderApi build(){
+            return new OrderApi(this);
+        }
     }
 
 }

@@ -31,9 +31,12 @@ import static org.apache.http.HttpStatus.*;
 
 public abstract class Api {
 
-    public URI endpoint;
-    public CloseableHttpClient restKlient;
-    public static final List<Integer> HTTP_KODER_TOM_RESPONS = new ArrayList<Integer>(Arrays.asList(SC_NOT_MODIFIED, SC_NO_CONTENT, SC_ACCEPTED));
+    public String url;
+    public String accessToken;
+
+    private URI endpoint;
+    private CloseableHttpClient restKlient;
+    private static final List<Integer> HTTP_KODER_TOM_RESPONS = new ArrayList<Integer>(Arrays.asList(SC_NOT_MODIFIED, SC_NO_CONTENT, SC_ACCEPTED));
 
     public static final ObjectMapper MAPPER = mapper();
 
@@ -51,14 +54,10 @@ public abstract class Api {
                 .enable(FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
-    Api(String url) {
+    Api(String url, String accessToken) {
         this.endpoint = validate(URI.create(url));
         this.restKlient = HttpClients.custom().build();
-    }
-
-    Api(URI endpoint, String tema, CloseableHttpClient klient) {
-        this.endpoint = validate(endpoint);
-        this.restKlient = klient;
+        this.accessToken = accessToken;
     }
 
     public static URI validate(URI endpoint) {
@@ -87,6 +86,7 @@ public abstract class Api {
             HttpPost post = new HttpPost(endpoint);
             post.setEntity(new StringEntity(req.toHttpJsonBody()));
             post.setHeader("Content-Type", "application/json; charset=utf8");
+            post.setHeader("X-Shop-Access-Token", this.accessToken);
             return post;
         } catch (UnsupportedEncodingException e) {
             throw new IllegalArgumentException(e);
@@ -119,6 +119,8 @@ public abstract class Api {
     public String toString() {
         return getClass().getSimpleName() + " [endpoint=" + endpoint + ", restKlient=" + restKlient + "]";
     }
+
+
 
 
 

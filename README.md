@@ -7,5 +7,6 @@ xshop open api java sdk client
 mvn generate-sources
 
 2、发布到中央仓库
+先 切换到 maven的settings.xml
 mvn clean install deploy -P release -Dgpg.passphrase=12345678
 
