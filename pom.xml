@@ -6,7 +6,7 @@
 
     <groupId>com.lucfish</groupId>
     <artifactId>xshop-openapi-java</artifactId>
-    <version>1.2</version>
+    <version>1.3</version>
     <name>xshop-openapi-java</name>
     <description>api</description>
     <url>https://github.com/xopenapi/xshop-openapi-java</url>
