@@ -1,4 +1,5 @@
-import com.example.graphqldemo.api.OrderApi;
+import com.lucfish.OrderApi;
+//import io.github.kobylynskyi.product.graphql.model.OrderTO;
 import com.lucfish.xshop.openapi.OrderTO;
 
 public class Test {
