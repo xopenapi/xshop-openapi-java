@@ -38,74 +38,6 @@
         <javax.activation.version>1.2.0</javax.activation.version>
     </properties>
 
-    <build>
-        <plugins>
-            <!-- GraphQL Codegen Maven plugin -->
-            <plugin>
-                <groupId>io.github.kobylynskyi</groupId>
-                <artifactId>graphql-codegen-maven-plugin</artifactId>
-                <!-- use the latest available version:
-                https://search.maven.org/artifact/io.github.kobylynskyi/graphql-codegen-maven-plugin -->
-                <version>${graphql.version}</version>
-                <executions>
-                    <execution>
-                        <id>generate-sources-product-client</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <graphqlSchemas>
-                                <!--                                <includePattern>schema-product-service\.graphqls</includePattern>-->
-<!--                                <includePattern>${project.basedir}/src/main/resources/schema.graphqls</includePattern>-->
-                                <includePattern>.*\.graphql</includePattern>
-                            </graphqlSchemas>
-                            <outputDir>${project.build.directory}/generated-sources/client</outputDir>
-                            <modelPackageName>com.lucfish.xshop.openapi</modelPackageName>
-                            <customTypesMapping>
-                                <DateTime>java.util.Date</DateTime>
-                                <!-- Following code can be used to generate boxed types instead of primitives:
-                                <property>
-                                    <name>Int!</name>
-                                    <value>Integer</value>
-                                </property>
-                                -->
-                            </customTypesMapping>
-                            <modelNameSuffix>TO</modelNameSuffix>
-                            <generateApis>true</generateApis>
-                            <generateClient>true</generateClient>
-                            <generateParameterizedFieldsResolvers>false</generateParameterizedFieldsResolvers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- GraphQL Codegen Maven plugin -->
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <showDeprecation>true</showDeprecation>
-                    <annotationProcessorPaths>
-                        <annotationProcessorPath>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>1.18.12</version>
-                        </annotationProcessorPath>
-                        <annotationProcessorPath>
-                            <groupId>org.mapstruct</groupId>
-                            <artifactId>mapstruct-processor</artifactId>
-                            <version>1.4.1.Final</version>
-                        </annotationProcessorPath>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
     <dependencies>
         <dependency>
             <groupId>com.graphql-java</groupId>
@@ -462,7 +394,6 @@
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
-
     <profiles>
         <profile>
             <id>release</id>
@@ -557,18 +488,83 @@
             <url>https://license.coscl.org.cn/MulanPSL2</url>
         </license>
     </licenses>
-
     <scm>
         <url>scm:git@github.com:xopenapi/xshop-openapi-java.git</url>
         <connection>scm:git@github.com:xopenapi/xshop-openapi-java.git</connection>
         <developerConnection>git@github.com:xopenapi/xshop-openapi-java.git</developerConnection>
     </scm>
-
     <developers>
         <developer>
             <name>asasadadc</name>
             <email>3113906659@qq.com</email>
         </developer>
     </developers>
+    <build>
+        <plugins>
+            <!-- GraphQL Codegen Maven plugin -->
+            <plugin>
+                <groupId>io.github.kobylynskyi</groupId>
+                <artifactId>graphql-codegen-maven-plugin</artifactId>
+                <!-- use the latest available version:
+                https://search.maven.org/artifact/io.github.kobylynskyi/graphql-codegen-maven-plugin -->
+                <version>${graphql.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-sources-product-client</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <graphqlSchemas>
+                                <!--                                <includePattern>schema-product-service\.graphqls</includePattern>-->
+                                <!--                                <includePattern>${project.basedir}/src/main/resources/schema.graphqls</includePattern>-->
+                                <includePattern>.*\.graphql</includePattern>
+                            </graphqlSchemas>
+                            <outputDir>${project.build.directory}/generated-sources/client</outputDir>
+                            <modelPackageName>com.lucfish.xshop.openapi</modelPackageName>
+                            <customTypesMapping>
+                                <DateTime>java.util.Date</DateTime>
+                                <!-- Following code can be used to generate boxed types instead of primitives:
+                                <property>
+                                    <name>Int!</name>
+                                    <value>Integer</value>
+                                </property>
+                                -->
+                            </customTypesMapping>
+                            <modelNameSuffix>TO</modelNameSuffix>
+                            <generateApis>true</generateApis>
+                            <generateClient>true</generateClient>
+                            <generateParameterizedFieldsResolvers>false</generateParameterizedFieldsResolvers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- GraphQL Codegen Maven plugin -->
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <showDeprecation>true</showDeprecation>
+                    <annotationProcessorPaths>
+                        <annotationProcessorPath>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.12</version>
+                        </annotationProcessorPath>
+                        <annotationProcessorPath>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>1.4.1.Final</version>
+                        </annotationProcessorPath>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
