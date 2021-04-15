@@ -13,7 +13,8 @@ public class OrderApi extends Api {
     public OrderTO order(String orderId) throws Exception {
         OrderQueryRequest orderQueryRequest = new OrderQueryRequest();
         orderQueryRequest.setId(orderId);
-        OrderResponseProjection responseProjection = new OrderResponseProjection().id();
+//        OrderResponseProjection responseProjection = new OrderResponseProjection().id();
+        OrderResponseProjection responseProjection = new OrderResponseProjection().all$();
         GraphQLRequest graphQLRequest = new GraphQLRequest(orderQueryRequest, responseProjection);
 
         OrderQueryResponse result = query(graphQLRequest, OrderQueryResponse.class);
